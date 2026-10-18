@@ -160,7 +160,7 @@ export function EntrySheet({ id }: { id: string }) {
                 label="From → to"
                 value={
                   <span className="inline-flex items-center gap-1.5">
-                    {from?.name ?? "?"} <ArrowRight className="size-3.5 text-muted" /> {to?.name ?? "?"}
+                    {from?.name ?? "Another account"} <ArrowRight className="size-3.5 text-muted" /> {to?.name ?? "?"}
                   </span>
                 }
               />

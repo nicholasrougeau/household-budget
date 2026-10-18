@@ -31,7 +31,7 @@ export function EntryRow({ e, unread, showAvatar = true }: { e: Entry; unread?: 
   const sub =
     e.kind === "transfer" ? (
       <span className="inline-flex items-center gap-1">
-        {from?.name ?? "?"} <ArrowRight className="size-3" /> {to?.name ?? "?"}
+        {from?.name ?? "Another account"} <ArrowRight className="size-3" /> {to?.name ?? "?"}
       </span>
     ) : (
       [cat?.name ?? (e.kind === "income" ? "Income" : "Uncategorized"), from?.name].filter(Boolean).join(" · ")
