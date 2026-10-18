@@ -92,8 +92,8 @@ function EntryForm({
   const incomeCats = cats.filter((c) => c.kind === "income");
   const paycheckCat = incomeCats.find((c) => c.name.toLowerCase().includes("paycheck"));
 
-  const [amount, setAmount] = useState(entry ? String(Number(entry.amount)) : "");
-  const [title, setTitle] = useState(entry?.title ?? (kind === "income" ? "Paycheck" : ""));
+  const [amount, setAmount] = useState(entry ? String(Number(entry.amount)) : preset?.amount ? String(Number(preset.amount)) : "");
+  const [title, setTitle] = useState(entry?.title ?? preset?.title ?? (kind === "income" ? "Paycheck" : ""));
   const [categoryId, setCategoryId] = useState<string | null>(
     entry?.category_id ?? preset?.category_id ?? (kind === "income" ? paycheckCat?.id ?? null : null)
   );
@@ -102,7 +102,6 @@ function EntryForm({
   );
   const [toAccountId, setToAccountId] = useState<string | null>(entry?.to_account_id ?? null);
   const [date, setDate] = useState(entry?.occurred_on ?? today());
-  const [oneTime, setOneTime] = useState(entry?.one_time ?? preset?.one_time ?? false);
   const [refund, setRefund] = useState(entry?.kind === "refund");
   const [flagged, setFlagged] = useState(entry?.flagged ?? false);
   const [note, setNote] = useState(entry?.note ?? "");
@@ -166,7 +165,7 @@ function EntryForm({
       account_id: accountId,
       to_account_id: kind === "transfer" ? toAccountId : null,
       occurred_on: date,
-      one_time: kind === "expense" ? oneTime : false,
+      one_time: entry?.one_time ?? false,
       flagged,
       note: note.trim() || null,
     };
@@ -268,7 +267,6 @@ function EntryForm({
                         onClick={() => {
                           touched.current.category = true;
                           setCategoryId(c.id);
-                          if (/one-time|trip/i.test(c.name) && !entry) setOneTime(true);
                         }}
                       >
                         <CategoryIcon icon={c.icon} className="size-3.5" />
@@ -299,8 +297,6 @@ function EntryForm({
 
       {kind === "expense" ? (
         <div className="rounded-2xl border border-line bg-surface px-3 py-1">
-          <Toggle checked={oneTime} onChange={setOneTime} label="One-time" hint="Not part of the monthly plan, like a repair, a gift or a trip." />
-          <div className="border-t border-line" />
           <Toggle checked={refund} onChange={setRefund} label="This is a refund" hint="Money back. It comes off the category." />
         </div>
       ) : null}

@@ -148,7 +148,6 @@ export function EntrySheet({ id }: { id: string }) {
             </div>
             <div className="mt-2 text-lg font-medium">{e.title}</div>
             <div className="mt-2 flex flex-wrap justify-center gap-1.5">
-              {e.one_time ? <span className="rounded-full bg-warn-soft px-2.5 py-0.5 text-xs font-semibold text-warn">One-time</span> : null}
               {e.flagged ? <span className="rounded-full bg-bad-soft px-2.5 py-0.5 text-xs font-semibold text-bad">To talk about</span> : null}
             </div>
           </div>

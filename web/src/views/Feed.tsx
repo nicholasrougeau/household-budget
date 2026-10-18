@@ -113,7 +113,6 @@ export function Feed({ params }: { params: URLSearchParams }) {
     ...state.members.map((m) => ({ id: m.id, label: m.name })),
     { id: "claude", label: "Claude" },
     { id: "flagged", label: "To talk about" },
-    { id: "one_time", label: "One-time" },
     { id: "unmatched", label: "Not matched yet" },
   ];
 

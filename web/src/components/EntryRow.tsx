@@ -65,9 +65,6 @@ export function EntryRow({ e, unread, showAvatar = true }: { e: Entry; unread?: 
       <span className="flex shrink-0 flex-col items-end gap-1">
         <span className={`num font-semibold ${entryAmountClass(e)}`}>{entryAmountText(e)}</span>
         <span className="flex items-center gap-1.5 text-muted">
-          {e.one_time ? (
-            <span className="rounded-full bg-warn-soft px-1.5 py-px text-[11px] font-semibold text-warn">One-time</span>
-          ) : null}
           {e.flagged ? <Flag className="size-3.5 text-bad" aria-label="Flagged to talk about" /> : null}
           {e.comment_count ? (
             <span className="inline-flex items-center gap-0.5 text-xs font-medium text-ink-2">
