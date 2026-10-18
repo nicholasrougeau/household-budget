@@ -120,7 +120,8 @@ export function summarizeMonth(
   const unplannedTotal = unplanned.reduce((s, u) => s + u.amount, 0);
   const spendBudget = dailyCats.reduce((s, c) => s + plan(c), 0);
   const spendSpent = dailyCats.reduce((s, c) => s + spent(c), 0) + unplannedTotal;
-  const spendTotal = dailyCats.reduce((s, c) => s + Math.max(plan(c), spent(c)), 0) + Math.max(0, unplannedTotal);
+  // Spending money is one pot: going over in one category is fine if another is under, same as the hero number.
+  const spendTotal = Math.max(spendBudget, spendSpent);
 
   const billsPlan = billCats.reduce((s, c) => s + plan(c), 0);
   const billsPaid = billCats.reduce((s, c) => s + spent(c), 0);

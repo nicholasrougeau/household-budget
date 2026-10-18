@@ -130,7 +130,7 @@ export function Home() {
                   <div className="font-semibold">{checkin.title}</div>
                   <span className="ml-auto text-xs text-muted">{relTime(checkin.created_at)}</span>
                 </div>
-                <p className="mt-2.5 text-[15px] leading-relaxed whitespace-pre-line text-ink-2">{checkin.body}</p>
+                <ClampedText text={checkin.body} />
               </Card>
             </>
           ) : null}
@@ -358,6 +358,18 @@ function MonthMoney({ s, month, check, onLogPay }: { s: MonthSummary; month: str
         </p>
       )}
     </Card>
+  );
+}
+
+function ClampedText({ text }: { text: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="mt-2.5">
+      <p className={`text-[15px] leading-relaxed whitespace-pre-line text-ink-2 ${open ? "" : "line-clamp-5"}`}>{text}</p>
+      <button onClick={() => setOpen((o) => !o)} className="mt-1 text-sm font-medium text-brand">
+        {open ? "Show less" : "Read all"}
+      </button>
+    </div>
   );
 }
 
