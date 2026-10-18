@@ -1,0 +1,17 @@
+# This repo is public: code only. No money data, no keys.
+node_modules/
+dist/
+.env
+.env.*
+!.env.production
+*.local
+TEMP_PINS*
+*.json.bak
+supabase/.temp/
+supabase/.branches/
+data/
+records/
+*.pdf
+*.csv
+.DS_Store
+Thumbs.db

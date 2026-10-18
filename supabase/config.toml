@@ -1,0 +1,4 @@
+project_id = "rougeau-household"
+
+[functions.api]
+verify_jwt = false
